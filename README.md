@@ -28,4 +28,4 @@ This is a more experimental method in poetry generation. Here, we take existing 
 * Third, we go through each line and ***replace each word*** with another word from the cummings corpus that can have the same part of speech (according to our POS model). This results in a new poem that is structurally similar to the original cummings work, but completely different in content.
 
 ### Some Notes on the Corpora
-The corpora used in this project are ["100 Selected Poems"] (https://archive.org/stream/100selectedpoems030398mbp/100selectedpoems030398mbp_djvu.txt) of e e cummings, used for the n-gram model and the initial steps of the POS model, and the [Brown corpus] (http://www.sls.hawaii.edu/bley-vroman/browntag_nolines.txt) of tagged speech, used for training the POS tagger.
+The corpora used in this project are ["100 Selected Poems"](https://archive.org/stream/100selectedpoems030398mbp/100selectedpoems030398mbp_djvu.txt) of e e cummings, used for the n-gram model and the initial steps of the POS model, and the [Brown corpus](http://www.sls.hawaii.edu/bley-vroman/browntag_nolines.txt) of tagged speech, used for training the POS tagger.
