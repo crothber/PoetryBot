@@ -29,3 +29,36 @@ This is a more experimental method in poetry generation. Here, we take existing 
 
 ### Some Notes on the Corpora
 The corpora used in this project are ["100 Selected Poems"](https://archive.org/stream/100selectedpoems030398mbp/100selectedpoems030398mbp_djvu.txt) of e e cummings, used for the n-gram model and the initial steps of the POS model, and the [Brown corpus](http://www.sls.hawaii.edu/bley-vroman/browntag_nolines.txt) of tagged speech, used for training the POS tagger.
+
+### Examples
+**ngram generated:**
+*and life be done
+and death is young
+and except nothing
+except last and self with the corn
+a yearning nation's blueeyed pride
+whose naught and death is slender 
+and on forever's very
+give it go it will not kiss
+the little fish
+quiver so comes over his tail's 
+red candle over utmost 
+magic or three*
+
+**POS generated**
+*while mankind is again 
+who comes any smile 
+without a wisdom with boys 
+will forth away believe me 
+ever to be the fear 
+that run is under the hair 
+his town constitutes 
+or bells are the kinder friend 
+than ocean 
+heart to contemplate above all eyes i say 
+if a smallest love totters my world is the same as 
+its punks hate which looks 
+you are into olaf less proudly 
+see changing far through his worlds 
+wrongsideout you not the son 
+and spring to grow is whatever's spare:*
