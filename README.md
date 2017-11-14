@@ -18,7 +18,7 @@ Now, we look at trigrams beginning with *gone into*. Our options are *gone into 
 A couple of notes:
 * **Unknowns** are not an issue for us, since we're only *generating* text from the training corpus (and not *evaluating* new text).
 * **Probability** is included in the language model, but as of now it doesn't affect the generated text -- as long as an ngram is possible, it doesn't matter how likely it is. In the future, this may change.
-* **Backoff** is used to ensure that new poems are as original as possible. When only **1 trigram** option is found (e.g., the words *into what* only occur once in the corpus, as part of the trigram *into what like*), we resort to **bigram** options (so we would choose from one of the 42 possible words that can *what*).
+* **Backoff** is used to ensure that new poems are as original as possible. When only **1 trigram** option is found (e.g., the words *into what* only occur once in the corpus, as part of the trigram *into what like*), we resort to **bigram** options (so we would choose from one of the 42 possible words that can follow *what*).
 
 #### part-of-speech generation
 This is a more experimental method in poetry generation. Here, we take existing lines from cummings' poetry and attempt to mirror his unique syntactic structure by replacing each word with a different word of the same part of speech. This is done as follows:
