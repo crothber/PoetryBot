@@ -5,7 +5,8 @@ Created on Thu Jul 13 12:10:38 2017
 @author: Carmi
 """
 # IMPORTS
-from languageModel import LanguageModel, HMM
+from languageModel import LanguageModel
+from hmm import HMM
 from random import choice as choose
 from collections import defaultdict
 
