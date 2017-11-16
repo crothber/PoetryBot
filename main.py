@@ -9,6 +9,7 @@ from languageModel import LanguageModel
 from hmm import HMM
 from random import choice as choose
 from collections import defaultdict
+import csv
 
 # TRAIN LANGUAGE MODEL FROM CUMMINGS
 print('training cummings language model...')
@@ -16,7 +17,8 @@ cummings = open('cummings.txt', 'r').read().split('\n')[7:]
 cummings = [l for l in cummings if l!='']
 cummings = [l for l in cummings if not(len(l.split())==1 and l[0].isdigit())]
 cummings = ' |n| '.join(cummings)
-cummings = cummings.translate({ord(c): ' ' for c in '()?.-",;!'}).lower()
+cummings = cummings.translate({ord(c): ' ' for c in '()?.-",;:!'}).lower()
+cummings_lines = [line.split() for line in cummings.split('|n|')]
 cummings = cummings.split()
 lm = LanguageModel()
 lm.train([cummings])
@@ -35,17 +37,12 @@ if train_pos == 'y':
             brown_split[-1].append(tuple(word.split('_')))
     brown = [line for line in brown_split if line != []]
     posLM = HMM()
-    print('training from brown...')
+    print('\ttraining from brown...')
     posLM.train(brown)
-    print('tagging cummings...')
-    cummings_lines = [l.split() for l in ' '.join(cummings).split('|n|')]
-    cummings_tagged = []
-    i = 0
-    for line in cummings_lines:
-        i += 1
-        if i%400==0:
-            print(str(int(100*i/2198)) + '% done', end='\t')
-        cummings_tagged.extend(posLM.viterbi_tag(line))
+    print('\ttagging cummings...')
+    with open('cummings_tagged.csv', 'r') as f:
+        reader = csv.reader(f)
+        cummings_tagged = list(reader)
     posToWord = defaultdict(list)
     for pair in cummings_tagged:
         posToWord[pair[1]].append(pair[0])
@@ -70,28 +67,10 @@ def ngramGenerate():
 # POS-GENERATE A POEM
 def posGenerate():
     
-    poem = """since feeling is first
-    who pays any attention
-    to the syntax of things
-    will never wholly kiss you;
-    wholly to be a fool
-    while Spring is in the world
-    my blood approves,
-    and kisses are a better fate
-    than wisdom
-    lady i swear by all flowers. Don’t cry
-    – the best gesture of my brain is less than
-    your eyelids’ flutter which says
-    we are for each other; then
-    laugh, leaning back in my arms
-    for life’s not a paragraph
-    And death i think is no parenthesis"""
-    
-    poem = poem.translate({ord(c): '' for c in '()?.-",;!’'}).lower()
-    lines = [line for line in poem.split('\n') if line!='']
+    lines = [choose(cummings_lines) for i in range(10)]
     
     for line in lines:
-        tagged_line = posLM.viterbi_tag(line.split())
+        tagged_line = posLM.viterbi_tag(line)
         for pair in tagged_line:
             wordOptions = posToWord[pair[1]]
             if len(wordOptions)>0:
