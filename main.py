@@ -28,6 +28,7 @@ print('done!')
 train_pos = input('prepare part-of-speech model, as well? (y/n) ')
 if train_pos == 'y':
     print('preparing POS language model (this may take a while...)')
+    print('\tpreparing brown corpus')
     brown = open('browntag_nolines.txt','r').read().split('\n')
     brown_split = []
     for line in brown:
@@ -39,7 +40,7 @@ if train_pos == 'y':
     posLM = HMM()
     print('\ttraining from brown...')
     posLM.train(brown)
-    print('\ttagging cummings...')
+    print('\timporting cummings tags...')
     with open('cummings_tagged.csv', 'r') as f:
         reader = csv.reader(f)
         cummings_tagged = list(reader)
@@ -80,6 +81,7 @@ def posGenerate():
 another = 'y'
 while another == 'y':
     poemType = input('what type of poem would you like to generate? (ngram or pos) ')
+    print()
     if poemType == 'ngram':
         ngramGenerate()
     elif poemType == 'pos':
