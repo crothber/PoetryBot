@@ -8,6 +8,7 @@ Created on Thu Jul 13 12:10:38 2017
 from languageModel import LanguageModel
 from hmm import HMM
 from random import choice as choose
+from random import randint
 from collections import defaultdict
 import csv
 
@@ -68,7 +69,8 @@ def ngramGenerate():
 # POS-GENERATE A POEM
 def posGenerate():
     
-    lines = [choose(cummings_lines) for i in range(10)]
+    startIndex = randint(0, len(cummings_lines)-1)
+    lines = cummings_lines[startIndex:startIndex+11]
     
     for line in lines:
         tagged_line = posLM.viterbi_tag(line)
